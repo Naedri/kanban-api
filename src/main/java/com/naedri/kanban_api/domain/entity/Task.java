@@ -7,6 +7,9 @@ import java.time.LocalDate;
 import java.util.Objects;
 import java.util.UUID;
 
+/**
+ * Models a task the user plans to do.
+ */
 @Entity
 @Table(name = "tasks")
 public class Task {
