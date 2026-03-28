@@ -16,7 +16,7 @@ RUN mvn clean package -DskipTests
 FROM ibm-semeru-runtimes:open-21-jre-noble as application
 WORKDIR /app
 
-COPY --from=builder /build/target/*.jar app.jar
+COPY --from=builder /build/target/*.jar kanban-api.jar
 
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-jar", "kanban-api.jar"]
