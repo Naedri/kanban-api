@@ -45,6 +45,9 @@ services:
       SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/db_kanban
       SPRING_DATASOURCE_USERNAME: db_user
       SPRING_DATASOURCE_PASSWORD: db_pwd_changemeinprod
+      SPRING_FLYWAY_URL: jdbc:postgresql://db:5432/db_kanban
+      SPRING_FLYWAY_USER: db_user
+      SPRING_FLYWAY_PASSWORD: db_pwd_changemeinprod
 
 volumes:
   postgres_data:
