@@ -10,13 +10,13 @@ services:
     restart: unless-stopped
     shm_size: 128mb
     environment:
-      POSTGRES_DB: db_kanban
-      POSTGRES_USER: db_user
-      POSTGRES_PASSWORD: db_pwd_changemeinprod
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER_NAME}
+      POSTGRES_PASSWORD: ${DB_USER_PWD}
     ports:
-      - "5432:5432"
+      - "${DB_PORT}:5432"
     healthcheck:
-      test: [ "CMD-SHELL", "pg_isready -U db_user -d db_kanban" ]
+      test: [ "CMD-SHELL", "pg_isready -U ${DB_USER_NAME} -d ${DB_NAME}" ]
       interval: 5s
       timeout: 5s
       retries: 5
@@ -28,7 +28,7 @@ services:
     container_name: kanban-db-admin
     restart: unless-stopped
     ports:
-      - "8081:8080"
+      - "${ADMINER_PORT}:8080"
     depends_on:
       db:
         condition: service_healthy
@@ -37,17 +37,20 @@ services:
     build: .
     container_name: kanban-api
     ports:
-      - "8080:8080"
+      - "${APP_PORT}:8080"
     depends_on:
       db:
         condition: service_healthy
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/db_kanban
-      SPRING_DATASOURCE_USERNAME: db_user
-      SPRING_DATASOURCE_PASSWORD: db_pwd_changemeinprod
-      SPRING_FLYWAY_URL: jdbc:postgresql://db:5432/db_kanban
-      SPRING_FLYWAY_USER: db_user
-      SPRING_FLYWAY_PASSWORD: db_pwd_changemeinprod
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/${DB_NAME}
+      SPRING_DATASOURCE_USERNAME: ${DB_USER_NAME}
+      SPRING_DATASOURCE_PASSWORD: ${DB_USER_PWD}
+      SPRING_FLYWAY_URL: jdbc:postgresql://db:5432/${DB_NAME}
+      SPRING_FLYWAY_USER: ${DB_USER_NAME}
+      SPRING_FLYWAY_PASSWORD: ${DB_USER_PWD}
+      SPRING_SECURITY_USER_NAME: ${SECURITY_USER_NAME}
+      SPRING_SECURITY_USER_PASSWORD: ${SECURITY_USER_PWD}
+      SPRING_SECURITY_USER_ROLES: ${SECURITY_USER_ROLES}
 
 volumes:
   postgres_data:

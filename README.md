@@ -17,16 +17,23 @@ The objective is to demonstrate clean architecture, secure REST design, and mode
 
 ## Run Locally
 
+1. Install a container manager (eg. `docker` or `podman`).
+2. Run :
+
 ```bash
-mvn clean verify
-mvn spring-boot:run
+git clone https://github.com/Naedri/kanban-api.git
+cd kanban-api
+cp .env.example .env
+docker compose up
 ```
 
-Swagger UI:
+3. Open in your web browser the Swagger UI :
 
 ```txt
 http://localhost:8080/swagger-ui.html
 ```
+
+4. Sign in using `admin` as Username and `admin_pwd_changemeinprod` as Password.
 
 ## Project Progress Checklist
 
