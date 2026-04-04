@@ -1,6 +1,6 @@
-package com.naedri.kanban_api.domain.dto;
+package com.naedri.kanban_api.dto.task;
 
-import com.naedri.kanban_api.domain.entity.TaskPriority;
+import com.naedri.kanban_api.domain.enums.TaskPriority;
 import jakarta.annotation.Nullable;
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotBlank;

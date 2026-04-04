@@ -1,5 +1,7 @@
-package com.naedri.kanban_api.domain.entity;
+package com.naedri.kanban_api.domain.model;
 
+import com.naedri.kanban_api.domain.enums.TaskPriority;
+import com.naedri.kanban_api.domain.enums.TaskStatus;
 import jakarta.persistence.*;
 
 import java.time.Instant;
@@ -46,6 +48,26 @@ public class Task {
         this.taskPriority = taskPriority;
         this.created = created;
         this.updated = updated;
+    }
+
+    public static Task create(
+            String title,
+            String description,
+            LocalDate dueDate,
+            TaskPriority priority) {
+
+        Instant now = Instant.now();
+
+        return new Task(
+                UUID.randomUUID(),
+                title,
+                description,
+                dueDate,
+                TaskStatus.OPEN,
+                priority,
+                now,
+                now
+        );
     }
 
     public UUID getId() {

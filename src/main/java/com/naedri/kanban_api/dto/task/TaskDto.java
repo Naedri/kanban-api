@@ -1,8 +1,8 @@
-package com.naedri.kanban_api.domain.dto;
+package com.naedri.kanban_api.dto.task;
 
 
-import com.naedri.kanban_api.domain.entity.TaskPriority;
-import com.naedri.kanban_api.domain.entity.TaskStatus;
+import com.naedri.kanban_api.domain.enums.TaskPriority;
+import com.naedri.kanban_api.domain.enums.TaskStatus;
 
 import java.time.LocalDate;
 import java.util.UUID;

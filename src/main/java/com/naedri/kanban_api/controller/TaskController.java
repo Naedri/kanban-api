@@ -1,9 +1,8 @@
 package com.naedri.kanban_api.controller;
 
-import com.naedri.kanban_api.domain.CreateTaskRequest;
-import com.naedri.kanban_api.domain.dto.CreateTaskRequestDto;
-import com.naedri.kanban_api.domain.dto.TaskDto;
-import com.naedri.kanban_api.domain.entity.Task;
+import com.naedri.kanban_api.domain.model.Task;
+import com.naedri.kanban_api.dto.task.CreateTaskRequestDto;
+import com.naedri.kanban_api.dto.task.TaskDto;
 import com.naedri.kanban_api.mapper.TaskMapper;
 import com.naedri.kanban_api.service.TaskService;
 import jakarta.validation.Valid;
@@ -17,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(path = "/api/rest/v1/task")
 public class TaskController {
+
     private final TaskService taskService;
     private final TaskMapper taskMapper;
 
@@ -30,9 +30,9 @@ public class TaskController {
             @Valid
             @RequestBody
             CreateTaskRequestDto createTaskRequestDto) {
-        CreateTaskRequest createTaskRequest = taskMapper.fromDto(createTaskRequestDto);
-        Task task = taskService.createTask(createTaskRequest);
+        Task task = taskService.createTask(createTaskRequestDto);
         TaskDto createdTaskDto = taskMapper.toDto(task);
-        return new ResponseEntity<>(createdTaskDto, HttpStatus.CREATED);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(createdTaskDto);
     }
 }
