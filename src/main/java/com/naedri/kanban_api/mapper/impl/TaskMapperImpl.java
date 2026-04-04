@@ -1,8 +1,8 @@
 package com.naedri.kanban_api.mapper.impl;
 
 import com.naedri.kanban_api.domain.model.Task;
-import com.naedri.kanban_api.dto.task.CreateTaskRequestDto;
-import com.naedri.kanban_api.dto.task.TaskDto;
+import com.naedri.kanban_api.dto.task.CreateTaskRequest;
+import com.naedri.kanban_api.dto.task.TaskResponse;
 import com.naedri.kanban_api.mapper.TaskMapper;
 import org.springframework.stereotype.Component;
 
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 public class TaskMapperImpl implements TaskMapper {
 
     @Override
-    public Task fromDto(CreateTaskRequestDto dto) {
+    public Task fromDto(CreateTaskRequest dto) {
 
         if (dto == null) {
             return null;
@@ -25,13 +25,13 @@ public class TaskMapperImpl implements TaskMapper {
     }
 
     @Override
-    public TaskDto toDto(Task task) {
+    public TaskResponse toDto(Task task) {
 
         if (task == null) {
             return null;
         }
 
-        return new TaskDto(
+        return new TaskResponse(
                 task.getId(),
                 task.getTitle(),
                 task.getDescription(),

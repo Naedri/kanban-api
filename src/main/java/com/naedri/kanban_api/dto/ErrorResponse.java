@@ -1,6 +1,6 @@
 package com.naedri.kanban_api.dto;
 
-public record ErrorDto(
+public record ErrorResponse(
         String error
 ) {
 }

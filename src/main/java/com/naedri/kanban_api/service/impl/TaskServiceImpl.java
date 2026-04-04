@@ -1,7 +1,7 @@
 package com.naedri.kanban_api.service.impl;
 
 import com.naedri.kanban_api.domain.model.Task;
-import com.naedri.kanban_api.dto.task.CreateTaskRequestDto;
+import com.naedri.kanban_api.dto.task.CreateTaskRequest;
 import com.naedri.kanban_api.mapper.TaskMapper;
 import com.naedri.kanban_api.repository.TaskRepository;
 import com.naedri.kanban_api.service.TaskService;
@@ -20,7 +20,7 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public Task createTask(CreateTaskRequestDto dto) {
+    public Task createTask(CreateTaskRequest dto) {
 
         Task task = taskMapper.fromDto(dto);
 

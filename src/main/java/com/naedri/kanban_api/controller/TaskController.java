@@ -1,8 +1,8 @@
 package com.naedri.kanban_api.controller;
 
 import com.naedri.kanban_api.domain.model.Task;
-import com.naedri.kanban_api.dto.task.CreateTaskRequestDto;
-import com.naedri.kanban_api.dto.task.TaskDto;
+import com.naedri.kanban_api.dto.task.CreateTaskRequest;
+import com.naedri.kanban_api.dto.task.TaskResponse;
 import com.naedri.kanban_api.mapper.TaskMapper;
 import com.naedri.kanban_api.service.TaskService;
 import jakarta.validation.Valid;
@@ -26,13 +26,13 @@ public class TaskController {
     }
 
     @PostMapping
-    public ResponseEntity<TaskDto> createTask(
+    public ResponseEntity<TaskResponse> createTask(
             @Valid
             @RequestBody
-            CreateTaskRequestDto createTaskRequestDto) {
-        Task task = taskService.createTask(createTaskRequestDto);
-        TaskDto createdTaskDto = taskMapper.toDto(task);
+            CreateTaskRequest createTaskRequest) {
+        Task task = taskService.createTask(createTaskRequest);
+        TaskResponse createdTaskResponse = taskMapper.toDto(task);
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(createdTaskDto);
+                .body(createdTaskResponse);
     }
 }

@@ -11,7 +11,7 @@ import java.util.UUID;
  * A DTO representing a task.
  * This class is owned by the presentation layer.
  */
-public record TaskDto(
+public record TaskResponse(
         UUID id,
         String title,
         String description,

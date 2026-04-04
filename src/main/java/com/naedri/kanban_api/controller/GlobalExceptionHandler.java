@@ -1,6 +1,6 @@
 package com.naedri.kanban_api.controller;
 
-import com.naedri.kanban_api.dto.ErrorDto;
+import com.naedri.kanban_api.dto.ErrorResponse;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,14 +22,14 @@ public class GlobalExceptionHandler {
      * This exception is thrown when a @Valid validation fails.
      */
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<ErrorDto> handleValidationException(MethodArgumentNotValidException ex) {
+    public ResponseEntity<ErrorResponse> handleValidationException(MethodArgumentNotValidException ex) {
 
         String errorMessage = ex.getBindingResult().getFieldErrors().stream()
                 .findFirst()
                 .map(DefaultMessageSourceResolvable::getDefaultMessage)
                 .orElse("Validation failed.");
 
-        ErrorDto errorDto = new ErrorDto(errorMessage);
-        return new ResponseEntity<>(errorDto, HttpStatus.BAD_REQUEST);
+        ErrorResponse errorResponse = new ErrorResponse(errorMessage);
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 }

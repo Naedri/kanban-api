@@ -1,11 +1,11 @@
 package com.naedri.kanban_api.mapper;
 
 import com.naedri.kanban_api.domain.model.Task;
-import com.naedri.kanban_api.dto.task.CreateTaskRequestDto;
-import com.naedri.kanban_api.dto.task.TaskDto;
+import com.naedri.kanban_api.dto.task.CreateTaskRequest;
+import com.naedri.kanban_api.dto.task.TaskResponse;
 
 public interface TaskMapper {
-    Task fromDto(CreateTaskRequestDto dto);
+    Task fromDto(CreateTaskRequest dto);
 
-    TaskDto toDto(Task task);
+    TaskResponse toDto(Task task);
 }

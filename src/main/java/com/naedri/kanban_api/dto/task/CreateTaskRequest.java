@@ -14,7 +14,7 @@ import java.time.LocalDate;
  * This class is owned by the presentation layer.
  * Its constraints allow to validate it.
  */
-public record CreateTaskRequestDto(
+public record CreateTaskRequest(
         @NotBlank(message = ERROR_MESSAGE_TITLE_LENGTH)
         @Length(max = 255)
         String title,
