@@ -29,8 +29,8 @@ public class TaskController {
     public ResponseEntity<TaskResponse> createTask(
             @Valid
             @RequestBody
-            CreateTaskRequest createTaskRequest) {
-        Task task = taskService.createTask(createTaskRequest);
+            CreateTaskRequest request) {
+        Task task = taskService.createTask(request);
         TaskResponse createdTaskResponse = taskMapper.toDto(task);
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(createdTaskResponse);

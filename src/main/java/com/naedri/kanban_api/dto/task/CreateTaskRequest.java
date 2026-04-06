@@ -26,11 +26,9 @@ public record CreateTaskRequest(
         @FutureOrPresent(message = ERROR_MESSAGE_DUE_DATE_VALUE)
         @Nullable
         LocalDate dueDate
-
 ) {
     private static final String ERROR_MESSAGE_TITLE_LENGTH = "Title must be between 1 and 255 characters.";
     private static final String ERROR_MESSAGE_DESCRIPTION_LENGTH = "Description must be less than 1000 characters.";
     private static final String ERROR_MESSAGE_TASK_PRIORITY = "Task priority must not be empty.";
     private static final String ERROR_MESSAGE_DUE_DATE_VALUE = "Due cate must be the future.";
-
 }
