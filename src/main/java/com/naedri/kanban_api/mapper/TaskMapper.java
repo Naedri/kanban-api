@@ -5,7 +5,7 @@ import com.naedri.kanban_api.dto.task.CreateTaskRequest;
 import com.naedri.kanban_api.dto.task.TaskResponse;
 
 public interface TaskMapper {
-    Task fromDto(CreateTaskRequest dto);
+    Task toEntity(CreateTaskRequest dto);
 
     TaskResponse toDto(Task task);
 }

@@ -22,7 +22,7 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public Task createTask(CreateTaskRequest dto) {
 
-        Task task = taskMapper.fromDto(dto);
+        Task task = taskMapper.toEntity(dto);
 
         return taskRepository.save(task);
     }

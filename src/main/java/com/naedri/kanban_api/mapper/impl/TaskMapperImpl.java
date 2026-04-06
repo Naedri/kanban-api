@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 public class TaskMapperImpl implements TaskMapper {
 
     @Override
-    public Task fromDto(CreateTaskRequest dto) {
+    public Task toEntity(CreateTaskRequest dto) {
 
         if (dto == null) {
             return null;
