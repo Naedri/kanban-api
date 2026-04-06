@@ -3,8 +3,7 @@ package com.naedri.kanban_api.domain.model;
 import com.naedri.kanban_api.domain.enums.TaskPriority;
 import com.naedri.kanban_api.domain.enums.TaskStatus;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.Instant;
 import java.time.LocalDate;
@@ -18,6 +17,8 @@ import java.util.UUID;
 @Table(name = "tasks")
 @Getter
 @Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -46,20 +47,6 @@ public class Task {
 
     @Column(name = "updated", nullable = false)
     private Instant updated;
-
-    public Task() {
-    }
-
-    public Task(UUID id, String title, String description, LocalDate dueDate, TaskStatus taskStatus, TaskPriority taskPriority, Instant created, Instant updated) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-        this.dueDate = dueDate;
-        this.taskStatus = taskStatus;
-        this.taskPriority = taskPriority;
-        this.created = created;
-        this.updated = updated;
-    }
 
     public static Task create(
             String title,
