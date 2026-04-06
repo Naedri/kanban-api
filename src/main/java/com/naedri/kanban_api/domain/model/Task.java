@@ -54,19 +54,19 @@ public class Task {
             String description,
             LocalDate dueDate,
             TaskPriority priority) {
-
         Instant now = Instant.now();
 
-        return new Task(
-                UUID.randomUUID(),
-                title,
-                description,
-                dueDate,
-                TaskStatus.OPEN,
-                priority,
-                now,
-                now
-        );
+        Task task = new Task();
+        task.id = UUID.randomUUID();
+        task.title = title;
+        task.description = description;
+        task.dueDate = dueDate;
+        task.taskStatus = TaskStatus.OPEN;
+        task.taskPriority = priority;
+        task.created = now;
+        task.updated = now;
+
+        return task;
     }
 
     @Override
