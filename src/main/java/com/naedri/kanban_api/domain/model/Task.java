@@ -19,6 +19,7 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
+@ToString
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -79,18 +80,5 @@ public class Task {
     public int hashCode() {
         return Objects.hashCode(id);
     }
-
-    @Override
-    public String toString() {
-        return "Task{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", description='" + description + '\'' +
-                ", dueDate=" + dueDate +
-                ", taskStatus=" + taskStatus +
-                ", taskPriority=" + taskPriority +
-                ", created=" + created +
-                ", updated=" + updated +
-                '}';
-    }
 }
+
