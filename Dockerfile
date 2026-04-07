@@ -4,7 +4,7 @@ WORKDIR /build
 
 # Copy only dependencies to allow caching
 COPY pom.xml .
-RUN mvn dependency:go-offline -B
+RUN mvn dependency:go-offline -B -nsu
 
 # Copy source code
 COPY src ./src
