@@ -7,11 +7,13 @@ import com.naedri.kanban_api.properties.AdminProperties;
 import com.naedri.kanban_api.repository.RoleRepository;
 import com.naedri.kanban_api.repository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Profile;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Profile("dev")
 @Component
 public class DataInitializer implements CommandLineRunner {
 
@@ -34,11 +36,9 @@ public class DataInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-
         createRoleIfNotExists(RoleName.ROLE_ADMIN);
         createRoleIfNotExists(RoleName.ROLE_USER);
-
-
+        
         String email = adminProperties.getEmail();
         if (!userRepository.existsByEmail(email)) {
 
