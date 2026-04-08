@@ -30,37 +30,38 @@ docker compose up
 3. Open in your web browser the Swagger UI :
 
 ```txt
-http://localhost:8080/swagger-ui.html
+http://localhost:8080/swagger-ui/index.html
 ```
 
-4. Sign in using `admin` as Username and `admin_pwd_changemeinprod` as Password.
+4. You may need to sign in before accessing to the Swagger OpenAPI definition. To do so, use `admin` as Username and
+   `security_pwd_changemeinprod` as Password.
 
 ## Project Progress Checklist
 
 ### Foundation
 
-- [ ] Project boots with Java 17
-- [ ] Clean package architecture
-- [ ] Constructor injection everywhere
-- [ ] Externalized configuration (properties)
+- [x] Project boots with Java 17
+- [x] Clean package architecture
+- [x] Constructor injection everywhere
+- [x] Externalized configuration (properties)
 
 ### Persistence
 
-- [ ] PostgreSQL configured
-- [ ] Flyway migrations enabled
-- [ ] JPA entities mapped correctly
+- [x] PostgreSQL configured
+- [x] Flyway migrations enabled
+- [x] JPA entities mapped correctly
 - [ ] Repository layer with pagination
 
 ### Security
 
-- [ ] User registration
-- [ ] JWT authentication
-- [ ] Passwords hashed (BCrypt)
-- [ ] Secured endpoints
+- [x] User registration
+- [x] JWT authentication
+- [x] Passwords hashed (BCrypt)
+- [x] Secured endpoints
 
 ### Task Management
 
-- [ ] Create task
+- [x] Create task
 - [ ] Update task
 - [ ] Task state machine enforced
 - [ ] Optimistic locking on Task
@@ -76,7 +77,7 @@ http://localhost:8080/swagger-ui.html
 - [ ] Validation layer
 - [ ] Proper HTTP status codes
 - [ ] Pagination and filtering
-- [ ] Swagger/OpenAPI documentation
+- [x] Swagger/OpenAPI documentation
 
 ### Testing and Delivery
 
