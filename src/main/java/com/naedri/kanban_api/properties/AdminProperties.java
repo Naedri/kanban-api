@@ -7,7 +7,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import java.util.List;
 
 @Getter
-@ConfigurationProperties(prefix = "spring.security.user")
+@ConfigurationProperties(prefix = "spring.admin.user")
 public class AdminProperties {
 
     private final String email;
