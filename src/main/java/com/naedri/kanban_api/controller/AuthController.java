@@ -51,8 +51,7 @@ public class AuthController {
 
         String token = jwtService.generateToken(user);
 
-        // ? can we use ResponseEntity.ok
-        return ResponseEntity.status(HttpStatus.OK).body(new AuthResponse(token));
+        return ResponseEntity.ok(new AuthResponse(token));
     }
 
     /**
@@ -66,8 +65,7 @@ public class AuthController {
         User user = userService.register(request);
         String token = jwtService.generateToken(user);
 
-        // ? can we use ResponseEntity.ok
-        return ResponseEntity.status(HttpStatus.OK).body(new AuthResponse(token));
+        return ResponseEntity.ok(new AuthResponse(token));
 
     }
 }
