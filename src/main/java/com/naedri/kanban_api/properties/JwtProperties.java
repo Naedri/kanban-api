@@ -1,9 +1,9 @@
 package com.naedri.kanban_api.properties;
 
+import lombok.Getter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Configuration;
 
-@Configuration
+@Getter
 @ConfigurationProperties(prefix = "spring.security.jwt")
 public class JwtProperties {
 
@@ -22,13 +22,5 @@ public class JwtProperties {
         this.expiration = expiration != null
                 ? expiration
                 : 86400000;
-    }
-
-    public String getSecret() {
-        return secret;
-    }
-
-    public Integer getExpiration() {
-        return expiration;
     }
 }
