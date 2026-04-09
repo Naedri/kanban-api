@@ -7,8 +7,12 @@ import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 /**
  * It is responsible to register :
@@ -43,6 +47,8 @@ public class SecurityConfig {
         return provider;
     }
 
+    // ? Why is it needed
+    // =< To avoid authenticationManager.authenticate(...) failling at runtime
     @Bean
     public AuthenticationManager authenticationManager(
             AuthenticationConfiguration config
@@ -54,5 +60,54 @@ public class SecurityConfig {
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+    /**
+     * To allow access to Swagger
+     *
+     * @param http
+     * @return
+     * @throws Exception
+     */
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http)
+            throws Exception {
+
+        http
+                .csrf(csrf -> csrf.disable())
+
+                .exceptionHandling(exception ->
+                        exception.authenticationEntryPoint(authEntryPointJwt)
+                )
+
+                .sessionManagement(session ->
+                        session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                )
+
+                .authorizeHttpRequests(auth -> auth
+
+                        // Swagger endpoints
+                        .requestMatchers(
+                                "/swagger-ui/**",
+                                "/v3/api-docs/**"
+                        ).permitAll()
+
+                        // Auth endpoints
+                        .requestMatchers(
+                                "/api/rest/v1/auth/**"
+                        ).permitAll()
+
+                        // Other endpoints
+                        .anyRequest().authenticated()
+                )
+
+                .authenticationProvider(authenticationProvider())
+
+                .addFilterBefore(
+                        jwtAuthenticationFilter,
+                        UsernamePasswordAuthenticationFilter.class
+                );
+
+        return http.build();
     }
 }
