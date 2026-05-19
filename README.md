@@ -1,5 +1,7 @@
 # Kanban API
 
+[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-6DB33F?logo=springboot&logoColor=fff)](https://spring.io/projects/spring-boot)
+
 A task manager API built with **Java 21** and **Spring Boot 4**.
 The objective is to demonstrate clean architecture, secure REST design, and modern backend practices.
 
@@ -83,7 +85,7 @@ http://localhost:8080/swagger-ui/index.html
 
 - [ ] Integration tests (Testcontainers)
 - [ ] CI pipeline
-- [ ] Dockerized application
+- [x] Dockerized application
 - [ ] Health probes enabled
 
 ## Architecture Highlights
